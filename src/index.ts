@@ -1,12 +1,12 @@
-import { renderSearchFormBlock } from './search-form';
-import { renderSearchStubBlock } from './search-results';
-import { renderUserBlock } from './user';
-import { renderToast } from './lib';
+import { renderSearchFormBlock } from './search-form.js'
+import { renderSearchStubBlock } from './search-results.js'
+import { renderUserBlock } from './user.js'
+import { renderToast } from './lib.js'
 
 window.addEventListener('DOMContentLoaded', () => {
-  renderUserBlock('0');
-  renderSearchFormBlock();
-  renderSearchStubBlock();
+  renderUserBlock('Wade Warren', '/img/avatar.png', '0')
+  renderSearchFormBlock()
+  renderSearchStubBlock()
   renderToast(
     {
       text: 'Это пример уведомления. Используйте его при необходимости',
@@ -15,8 +15,8 @@ window.addEventListener('DOMContentLoaded', () => {
     {
       name: 'Понял',
       handler: () => {
-        console.log('Уведомление закрыто');
+        console.log('Уведомление закрыто')
       },
     }
-  );
-});
+  )
+})
