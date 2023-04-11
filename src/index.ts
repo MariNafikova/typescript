@@ -3,6 +3,28 @@ import { renderSearchStubBlock } from './search-results.js'
 import { renderUserBlock } from './user.js'
 import { renderToast } from './lib.js'
 
+localStorage.setItem(
+  'user',
+  '{"username": "Wade Warren", "avatarUrl": "/img/avatar.png"}'
+)
+localStorage.setItem('favoritesAmount', String(0))
+
+const getUserData = () => {
+  function serializeUserData(value: unknown) {
+    return JSON.parse(<string>value)
+  }
+  return serializeUserData(localStorage.getItem('user'))
+}
+const getFavoritesAmount = () => {
+  function serializeFavoritesAmount(value: unknown) {
+    return parseInt(<string>value)
+  }
+  return serializeFavoritesAmount(localStorage.getItem('favoritesAmount'))
+}
+console.log('LocalStorage', getUserData(), getFavoritesAmount())
+
+const user = getUserData()
+
 class limitationDates {
   startLimitationDate: string
   endLimitationDate: string
@@ -20,7 +42,7 @@ class limitationDates {
 const limitDates = new limitationDates()
 
 window.addEventListener('DOMContentLoaded', () => {
-  renderUserBlock('Wade Warren', '/img/avatar.png', 0)
+  renderUserBlock(user.username, user.avatarUrl, getFavoritesAmount())
   renderSearchFormBlock(
     limitDates.startLimitationDate,
     limitDates.endLimitationDate
