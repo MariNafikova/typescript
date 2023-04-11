@@ -2,6 +2,7 @@ import { renderSearchFormBlock } from './search-form.js'
 import { renderSearchStubBlock } from './search-results.js'
 import { renderUserBlock } from './user.js'
 import { renderToast } from './lib.js'
+import { searchFormData } from './search-form.js'
 
 localStorage.setItem(
   'user',
@@ -24,6 +25,18 @@ const getFavoritesAmount = () => {
 console.log('LocalStorage', getUserData(), getFavoritesAmount())
 
 const user = getUserData()
+
+const searchData: searchFormData = {
+  checkIn: '2021-05-11',
+  checkOut: '2021-06-11',
+  price: 1000,
+  city: 'Saint-Petersburg',
+}
+
+function search(data) {
+  console.log(data)
+}
+const searchResult = search(searchData)
 
 class limitationDates {
   startLimitationDate: string

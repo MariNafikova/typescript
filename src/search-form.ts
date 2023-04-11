@@ -1,5 +1,12 @@
 import { renderBlock } from './lib.js'
 
+export interface searchFormData {
+  checkIn: string
+  checkOut: string
+  price: number
+  city: string
+}
+
 export function renderSearchFormBlock(
   startLimitationDate: string,
   endLimitationDate: string
