@@ -11,6 +11,6 @@ declare module 'flat-rent-sdk' {
   export interface Callback<R> {
     (error?: Error, result?: R)
   }
-  export function search(query: string, callback: Callback<Rent[]>): void
-  export function get(id: string, callback: Callback<Rent>): void
+  export function search(query: object, callback: Callback<Rent[]>): object
+  export function get(id: string, callback: Callback<Rent>): object
 }
