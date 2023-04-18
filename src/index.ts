@@ -1,8 +1,16 @@
 import { renderSearchFormBlock } from './search-form.js'
-// import { renderSearchStubBlock } from './search-results.js'
+import { renderSearchStubBlock } from './search-results.js'
 import { renderUserBlock } from './user.js'
-// import { renderToast } from './lib.js'
-// import { searchFormData } from './search-form.js'
+import { renderToast } from './lib.js'
+import { get } from 'flat-rent-sdk'
+
+get('vnd331', function (error, results) {
+  if (error) {
+    console.log(error)
+  } else {
+    console.log(results)
+  }
+})
 
 localStorage.setItem(
   'user',
@@ -47,17 +55,17 @@ window.addEventListener('DOMContentLoaded', () => {
     limitDates.startLimitationDate,
     limitDates.endLimitationDate
   )
-  // renderSearchStubBlock()
-  // renderToast(
-  //   {
-  //     text: 'Это пример уведомления. Используйте его при необходимости',
-  //     type: 'success',
-  //   },
-  //   {
-  //     name: 'Понял',
-  //     handler: () => {
-  //       console.log('Уведомление закрыто')
-  //     },
-  //   }
-  // )
+  renderSearchStubBlock()
+  renderToast(
+    {
+      text: 'Это пример уведомления. Используйте его при необходимости',
+      type: 'success',
+    },
+    {
+      name: 'Понял',
+      handler: () => {
+        console.log('Уведомление закрыто')
+      },
+    }
+  )
 })
