@@ -2,15 +2,10 @@ import { renderSearchFormBlock } from './search-form.js'
 import { renderSearchStubBlock } from './search-results.js'
 import { renderUserBlock } from './user.js'
 import { renderToast } from './lib.js'
-import { get } from 'flat-rent-sdk'
+import { FlatRentSdk } from './flat-rent-sdk.js'
 
-get('vnd331', function (error, results) {
-  if (error) {
-    console.log(error)
-  } else {
-    console.log(results)
-  }
-})
+const rent = new FlatRentSdk().get('vnd331')
+console.log(rent)
 
 localStorage.setItem(
   'user',
