@@ -14,7 +14,7 @@ export function renderSearchFormBlock(
   renderBlock(
     'search-form-block',
     `
-    <form onsubmit='return false'>
+    <form onsubmit='return false' id='search-form'>
       <fieldset class='search-filedset' id='search-filedset'>
         <div class='row'>
           <div>
@@ -56,7 +56,9 @@ export function renderSearchFormBlock(
     </form>
     `
   )
-  document.getElementById('search-button').onclick = function () {
+  const searchForm = document.getElementById('search-form')
+  searchForm.addEventListener('submit', (e) => {
+    e.preventDefault()
     const fieldset = document.getElementById('search-filedset')
     const elements = fieldset.querySelectorAll('input')
     const searchData: searchFormData = {
@@ -82,5 +84,5 @@ export function renderSearchFormBlock(
       }
     })
     console.log('searchData: ', searchData)
-  }
+  })
 }
