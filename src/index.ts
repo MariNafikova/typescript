@@ -1,4 +1,11 @@
 import { renderSearchFormBlock } from './search-form.js'
+import { renderSearchStubBlock } from './search-results.js'
+import { renderUserBlock } from './user.js'
+import { renderToast } from './lib.js'
+import { FlatRentSdk } from './flat-rent-sdk.js'
+
+const rent = new FlatRentSdk().get('vnd331')
+console.log(rent)
 import {
   renderSearchResultsBlock,
   renderSearchStubBlock,
