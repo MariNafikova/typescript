@@ -1,28 +1,14 @@
 import { renderSearchFormBlock } from './search-form.js'
-import { renderSearchStubBlock } from './search-results.js'
-import { renderUserBlock } from './user.js'
+import {
+  renderSearchResultsBlock,
+  renderSearchStubBlock,
+} from './search-results.js'
+import { getUserData, renderUserBlock } from './user.js'
 import { renderToast } from './lib.js'
+import { getFavoritesAmount, initLocalStorage } from './helpers.js'
 
-localStorage.setItem(
-  'user',
-  '{"username": "Wade Warren", "avatarUrl": "/img/avatar.png"}'
-)
-localStorage.setItem('favoritesAmount', String(0))
-
-const getUserData = () => {
-  function serializeUserData(value: unknown) {
-    return JSON.parse(<string>value)
-  }
-  return serializeUserData(localStorage.getItem('user'))
-}
-const getFavoritesAmount = () => {
-  function serializeFavoritesAmount(value: unknown) {
-    return parseInt(<string>value)
-  }
-  return serializeFavoritesAmount(localStorage.getItem('favoritesAmount'))
-}
-
-const user = getUserData()
+// Заполняем локальное хранилище
+initLocalStorage()
 
 class limitationDates {
   startLimitationDate: string
@@ -41,12 +27,17 @@ class limitationDates {
 const limitDates = new limitationDates()
 
 window.addEventListener('DOMContentLoaded', () => {
-  renderUserBlock(user.username, user.avatarUrl, getFavoritesAmount())
+  renderUserBlock(
+    getUserData().username,
+    getUserData().avatarUrl,
+    getFavoritesAmount()
+  )
   renderSearchFormBlock(
     limitDates.startLimitationDate,
     limitDates.endLimitationDate
   )
   renderSearchStubBlock()
+  renderSearchResultsBlock()
   renderToast(
     {
       text: 'Это пример уведомления. Используйте его при необходимости',

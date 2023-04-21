@@ -1,5 +1,14 @@
 import { renderBlock } from './lib.js'
 
+// Получаем данные пользователя из локального хранилища
+export const getUserData = () => {
+  function serializeUserData(value: unknown) {
+    return JSON.parse(<string>value)
+  }
+  return serializeUserData(localStorage.getItem('user'))
+}
+
+// Отрисовываем блок пользователя
 export function renderUserBlock(
   name: string,
   avatar: string,
