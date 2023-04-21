@@ -1,0 +1,36 @@
+import { renderBlock } from './lib.js'
+
+// Получаем данные пользователя из локального хранилища
+export const getUserData = () => {
+  function serializeUserData(value: unknown) {
+    return JSON.parse(<string>value)
+  }
+  return serializeUserData(localStorage.getItem('user'))
+}
+
+// Отрисовываем блок пользователя
+export function renderUserBlock(
+  name: string,
+  avatar: string,
+  favoriteItemsAmount?: number
+) {
+  const favoritesCaption =
+    favoriteItemsAmount > 0 ? favoriteItemsAmount : 'Ничего нет'
+  const hasFavoriteItems = !!favoriteItemsAmount
+  renderBlock(
+    'user-block',
+    `
+    <div class="header-container">
+      <img class="avatar" src="${avatar}" alt="${name}" />
+      <div class="info">
+          <p class="name">${name}</p>
+          <p class="fav">
+            <i class="heart-icon${
+              hasFavoriteItems ? ' active' : ''
+            }"></i>${favoritesCaption}
+          </p>
+      </div>
+    </div>
+    `
+  )
+}
