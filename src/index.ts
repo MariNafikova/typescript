@@ -1,21 +1,20 @@
 import { renderSearchFormBlock } from './search-form.js'
-import { renderSearchStubBlock } from './search-results.js'
-import { renderUserBlock } from './user.js'
 import { renderToast } from './lib.js'
 import { FlatRentSdk } from './flat-rent-sdk.js'
 
-const rent = new FlatRentSdk().get('vnd331')
-console.log(rent)
 import {
   renderSearchResultsBlock,
   renderSearchStubBlock,
 } from './search-results.js'
 import { getUserData, renderUserBlock } from './user.js'
-import { renderToast } from './lib.js'
 import { getFavoritesAmount, initLocalStorage } from './helpers.js'
 
 // Заполняем локальное хранилище
 initLocalStorage()
+
+// Проверяем подключение sdk
+const rent = new FlatRentSdk().get('vnd331')
+console.log(rent)
 
 class limitationDates {
   startLimitationDate: string
